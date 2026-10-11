@@ -1,0 +1,139 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nurseprep_app
+    restart: unless-stopped
+    env_file:
+      - .env.prod
+    environment:
+      PHX_SERVER: "true"
+      PORT: "4000"
+      POOL_SIZE: "10"
+      DATABASE_URL: ecto://nurseprep:${APP_DB_PASSWORD}@app-db:5432/nurseprep_prod
+      EVOLUTION_API_BASE_URL: http://evolution-api:8080
+      EVOLUTION_API_INSTANCE: nurseprep
+    depends_on:
+      app-db:
+        condition: service_healthy
+      evolution-api:
+        condition: service_healthy
+    networks:
+      - nurseprep
+
+  app-db:
+    image: postgres:16-alpine
+    container_name: nurseprep_app_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: nurseprep_prod
+      POSTGRES_USER: nurseprep
+      POSTGRES_PASSWORD: ${APP_DB_PASSWORD}
+    volumes:
+      - app_db_data:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nurseprep"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - nurseprep
+
+  evolution-api:
+    image: evoapicloud/evolution-api:v2.3.7
+    container_name: nurseprep_evolution_api
+    restart: unless-stopped
+    environment:
+      SERVER_URL: http://localhost:8080
+      AUTHENTICATION_API_KEY: ${EVOLUTION_API_KEY}
+      DATABASE_ENABLED: "true"
+      DATABASE_PROVIDER: postgresql
+      DATABASE_CONNECTION_URI: postgresql://evolution:${EVOLUTION_DB_PASSWORD}@evolution-postgres:5432/evolution?schema=evolution_api
+      DATABASE_SAVE_DATA_INSTANCE: "true"
+      DATABASE_SAVE_DATA_NEW_MESSAGE: "true"
+      DATABASE_SAVE_MESSAGE_UPDATE: "true"
+      DATABASE_SAVE_DATA_CONTACTS: "true"
+      DATABASE_SAVE_DATA_CHATS: "true"
+      CACHE_REDIS_ENABLED: "true"
+      CACHE_REDIS_URI: redis://evolution-redis:6379/6
+      CACHE_REDIS_PREFIX_KEY: nurseprep-evolution
+      CACHE_LOCAL_ENABLED: "false"
+      QRCODE_LIMIT: "30"
+      WEBHOOK_GLOBAL_ENABLED: "false"
+    volumes:
+      - evolution_instances:/evolution/instances
+    ports:
+      - "127.0.0.1:8080:8080"
+    depends_on:
+      evolution-postgres:
+        condition: service_healthy
+      evolution-redis:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - nurseprep
+
+  evolution-postgres:
+    image: postgres:15-alpine
+    container_name: nurseprep_evolution_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: evolution
+      POSTGRES_USER: evolution
+      POSTGRES_PASSWORD: ${EVOLUTION_DB_PASSWORD}
+    volumes:
+      - evolution_postgres_data:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:5434:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U evolution"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - nurseprep
+
+  evolution-redis:
+    image: redis:7-alpine
+    container_name: nurseprep_evolution_redis
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - evolution_redis_data:/data
+    networks:
+      - nurseprep
+
+  caddy:
+    image: caddy:2-alpine
+    container_name: nurseprep_caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - app
+    networks:
+      - nurseprep
+
+networks:
+  nurseprep:
+    driver: bridge
+
+volumes:
+  app_db_data:
+  evolution_instances:
+  evolution_postgres_data:
+  evolution_redis_data:
+  caddy_data:
+  caddy_config:

@@ -1,0 +1,438 @@
+/* See the Tailwind configuration guide for advanced usage
+   https://tailwindcss.com/docs/configuration */
+
+@import "tailwindcss" source(none);
+@import "phoenix-colocated/nurseprep/colocated.css";
+@source "../css";
+@source "../js";
+@source "../../lib/nurseprep_web";
+/* Required for Tailwind to automatically pick up changes in colocated CSS files in dev */
+@source "../../_build/dev/phoenix-colocated/nurseprep/*/";
+
+/* Inter, self-hosted (single variable file covers weights 400-800) so pages
+   never depend on an external font CDN. */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("/fonts/inter-var.woff2") format("woff2");
+}
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* A Tailwind plugin that makes "hero-#{ICON}" classes available.
+   The heroicons installation itself is managed by your mix.exs */
+@plugin "../vendor/heroicons";
+
+/* daisyUI Tailwind Plugin. */
+@plugin "daisyui/packages/bundle/daisyui" {
+  themes: false;
+}
+
+/* daisyUI theme plugin-NursePrep brand: colors sampled directly from the
+   logo mark (1.png) - indigo #3f4096 (badge), cyan #4fd6ec (pages /
+   wordmark), blue #2898d7 (page shadow). Same hue+chroma carried into both
+   themes; only lightness shifts, and only as far as needed to keep
+   button/text contrast at WCAG AA, so the brand reads the same in both.
+   Build your own at: https://daisyui.com/theme-generator/ */
+@plugin "daisyui/packages/bundle/daisyui-theme" {
+  name: "dark";
+  default: false;
+  prefersdark: true;
+  color-scheme: "dark";
+  --color-base-100: oklch(27.9% 0.041 260.031);
+  --color-base-200: oklch(20.8% 0.042 265.755);
+  --color-base-300: oklch(12.9% 0.042 264.695);
+  --color-base-content: oklch(98.4% 0.003 247.858);
+  --color-primary: oklch(57% 0.155 278.192);
+  --color-primary-content: oklch(100% 0 0);
+  --color-secondary: oklch(54% 0.134 239.429);
+  --color-secondary-content: oklch(98.4% 0.003 247.858);
+  --color-accent: oklch(81.2% 0.119 210.33);
+  --color-accent-content: oklch(15% 0.03 240);
+  --color-neutral: oklch(37.2% 0.044 257.287);
+  --color-neutral-content: oklch(98.4% 0.003 247.858);
+  --color-info: oklch(70.7% 0.165 254.624);
+  --color-info-content: oklch(18% 0.03 260);
+  --color-success: oklch(60% 0.118 184.704);
+  --color-success-content: oklch(98% 0.014 180.72);
+  --color-warning: oklch(66% 0.179 58.318);
+  --color-warning-content: oklch(98% 0.022 95.277);
+  --color-error: oklch(58% 0.253 17.585);
+  --color-error-content: oklch(96% 0.015 12.422);
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.75rem;
+  --size-selector: 0.21875rem;
+  --size-field: 0.21875rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+@plugin "daisyui/packages/bundle/daisyui-theme" {
+  name: "light";
+  default: true;
+  prefersdark: false;
+  color-scheme: "light";
+  --color-base-100: oklch(100% 0 0);
+  --color-base-200: oklch(98.4% 0.003 247.858);
+  --color-base-300: oklch(92.8% 0.006 264.531);
+  --color-base-content: oklch(20.8% 0.042 265.755);
+  --color-primary: oklch(42.1% 0.138 278.192);
+  --color-primary-content: oklch(100% 0 0);
+  --color-secondary: oklch(54% 0.134 239.429);
+  --color-secondary-content: oklch(98.4% 0.003 247.858);
+  --color-accent: oklch(81.2% 0.119 210.33);
+  --color-accent-content: oklch(15% 0.03 240);
+  --color-neutral: oklch(37.2% 0.044 257.287);
+  --color-neutral-content: oklch(98.4% 0.003 247.858);
+  --color-info: oklch(62.3% 0.214 259.815);
+  --color-info-content: oklch(97% 0.014 254.604);
+  --color-success: oklch(70% 0.14 182.503);
+  --color-success-content: oklch(98% 0.014 180.72);
+  --color-warning: oklch(66% 0.179 58.318);
+  --color-warning-content: oklch(98% 0.022 95.277);
+  --color-error: oklch(58% 0.253 17.585);
+  --color-error-content: oklch(96% 0.015 12.422);
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.75rem;
+  --size-selector: 0.21875rem;
+  --size-field: 0.21875rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+/* Add variants based on LiveView classes */
+@custom-variant phx-click-loading (.phx-click-loading&, .phx-click-loading &);
+@custom-variant phx-submit-loading (.phx-submit-loading&, .phx-submit-loading &);
+@custom-variant phx-change-loading (.phx-change-loading&, .phx-change-loading &);
+
+/* Use the data attribute for dark mode  */
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+/* Make LiveView wrapper divs transparent for layout */
+[data-phx-session], [data-phx-teleported-src] { display: contents }
+
+/* Typography: tight tracking on headings reads as considered/designed
+   rather than default-browser; body copy stays untouched. */
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Soft elevation for every daisyUI card site-wide, instead of a flat
+   border-one rule here beats hand-adding shadow classes to every card
+   in every template. Interactive cards (links/buttons) lift slightly on
+   hover. Shadows read as muddy on dark surfaces, so dark mode leans on
+   the existing base-100/200 contrast instead. */
+.card {
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.04), 0 1px 3px 0 rgb(0 0 0 / 0.06);
+  transition: box-shadow 150ms ease, transform 150ms ease;
+}
+
+a.card:hover, button.card:hover {
+  box-shadow: 0 8px 20px 0 rgb(0 0 0 / 0.08), 0 2px 6px 0 rgb(0 0 0 / 0.06);
+  transform: translateY(-2px);
+}
+
+[data-theme="dark"] .card {
+  box-shadow: none;
+}
+
+/* Formatting for AI tutor replies-MDEx renders the model's Markdown
+   (bold, lists, occasional tables) to sanitized HTML; these rules make
+   those tags read as native chat-bubble typography instead of default
+   browser styling. */
+.chat-markdown :first-child {
+  margin-top: 0;
+}
+
+.chat-markdown :last-child {
+  margin-bottom: 0;
+}
+
+.chat-markdown p {
+  @apply mb-2;
+}
+
+.chat-markdown strong {
+  @apply font-semibold;
+}
+
+.chat-markdown ul {
+  @apply list-disc list-outside pl-5 mb-2 space-y-1;
+}
+
+.chat-markdown ol {
+  @apply list-decimal list-outside pl-5 mb-2 space-y-1;
+}
+
+.chat-markdown li > ul,
+.chat-markdown li > ol {
+  @apply mt-1 mb-0;
+}
+
+.chat-markdown a {
+  @apply link link-primary;
+}
+
+.chat-markdown code {
+  @apply rounded bg-base-content/10 px-1 py-0.5 font-mono text-[0.85em];
+}
+
+.chat-markdown pre {
+  @apply mb-2 overflow-x-auto rounded-lg bg-base-content/10 p-3 text-[0.85em];
+}
+
+.chat-markdown pre code {
+  @apply bg-transparent p-0;
+}
+
+.chat-markdown blockquote {
+  @apply mb-2 border-l-2 border-base-content/20 pl-3 italic text-base-content/70;
+}
+
+.chat-markdown h1,
+.chat-markdown h2,
+.chat-markdown h3 {
+  @apply mt-3 mb-1.5 font-semibold;
+}
+
+.chat-markdown table {
+  @apply table table-sm mb-2;
+}
+
+.chat-markdown hr {
+  @apply my-2 border-base-content/10;
+}
+
+/* Homepage subject marquee: pure CSS infinite scroll (the badge list is
+   rendered twice in the template so the 50%-translate loop is seamless).
+   Pauses on hover/focus so a hovered subject stays readable, and is
+   disabled entirely under reduced-motion. */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee 32s linear infinite;
+}
+
+.marquee-track:hover,
+.marquee-track:focus-within {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* Telegram-fallback modal (UserLive.Login): a quick backdrop fade plus a
+   subtle pop-and-settle on the dialog itself reads as considered rather
+   than the content just snapping into place-same reasoning as the card
+   hover-lift rule above. */
+@keyframes modal-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes modal-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(4px);
+  }
+}
+
+.animate-modal-fade {
+  animation: modal-fade 200ms ease-out;
+}
+
+.animate-modal-pop {
+  animation: modal-pop 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-modal-fade,
+  .animate-modal-pop {
+    animation: none;
+  }
+}
+
+/* Homepage scroll-reveal (in the spirit of the animated-hero blocks on
+   21st.dev, reimplemented in plain CSS/JS since this is a server-rendered
+   HEEx page, not React). `[data-reveal]` elements start hidden ONLY once
+   `app.js` has actually loaded (the `.js` class below) - `<noscript>`
+   content and any environment where the script fails to run gets the
+   fully-visible page instead of a broken permanently-hidden one. Once
+   visible, `app.js`'s IntersectionObserver adds `.is-visible`; the
+   `--reveal-delay` custom property (set per-element via an inline style
+   for staggered grids) lets a whole row cascade instead of popping in
+   as one block. */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1), transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Hero: reveals immediately on load (it's above the fold, so waiting on
+   scroll would mean waiting on nothing) with a tighter cascade than the
+   scroll-triggered sections below - a slower, heavier entrance would read
+   as sluggish on the very first thing a visitor sees. */
+.js [data-reveal="hero"] {
+  transition-duration: 700ms;
+}
+
+/* Ambient background blobs: a slow, subtle drift instead of static
+   circles - motion here reads as "alive" without ever drawing attention
+   away from the headline. Purely `transform`/`opacity` (GPU-cheap, no
+   layout thrash). Each blob gets its own timing via inline style so two
+   blobs sharing a section don't move in lockstep. */
+@keyframes blob-drift {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(var(--blob-x, 2rem), var(--blob-y, -1.5rem)) scale(1.08);
+    opacity: 0.85;
+  }
+}
+
+.animate-blob {
+  animation: blob-drift var(--blob-duration, 16s) ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-blob {
+    animation: none;
+  }
+}
+
+/* Hero product-UI floating cards: a gentle bob, distinct from the
+   background blobs' drift-and-scale - these sit *on top of* the CBT
+   mockup as small "real UI" analytics chips, so the motion is smaller
+   and faster to read as a live interface rather than ambient decor.
+   `--float-delay` staggers siblings so four cards don't bob in unison. */
+@keyframes float-card {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: float-card var(--float-duration, 5s) ease-in-out infinite;
+  animation-delay: var(--float-delay, 0ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float {
+    animation: none;
+  }
+}
+
+/* Progress ring: a plain conic-gradient circle rather than an SVG/JS
+   chart library - one CSS custom property (`--ring-pct`, 0-100) drives
+   the fill, cheap to render and trivially themeable. `--ring-color`
+   defaults to primary but callers (e.g. an accuracy ring vs a readiness
+   ring) can override it. The inner disc punches the "donut" hole. */
+.progress-ring {
+  --ring-pct: 0;
+  --ring-color: var(--color-primary);
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  background: conic-gradient(
+    var(--ring-color) calc(var(--ring-pct) * 1%),
+    color-mix(in oklch, var(--ring-color) 15%, transparent) 0
+  );
+  display: grid;
+  place-items: center;
+}
+
+.progress-ring::after {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  border-radius: 9999px;
+  background: var(--color-base-100);
+}
+
+.progress-ring > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Marketing-page sticky header elevation, toggled by app.js's scroll
+   listener (see `data-elevate-on-scroll`). Transitioned so the border/
+   shadow eases in rather than snapping the instant scroll starts. */
+[data-elevate-on-scroll] {
+  transition: box-shadow 200ms ease, border-color 200ms ease;
+  border-bottom: 1px solid transparent;
+}
+
+[data-elevate-on-scroll].is-elevated {
+  border-bottom-color: var(--color-base-300);
+  box-shadow: 0 4px 16px 0 rgb(0 0 0 / 0.04);
+}
+
+/* Student shell's fixed mobile bottom tab bar (`layouts.ex`'s `student/1`,
+   daisyUI's `.dock`) sits in the same viewport-bottom corner the flash
+   toast's `toast-bottom` (mobile, below the `sm:toast-top` switch) already
+   claims-without this, a flash message renders on top of the bottom nav
+   and silently eats its taps. Scoped to exactly the width range where
+   `toast-bottom` (not `toast-top`) is actually active. */
+@media (max-width: 639.98px) {
+  .toast.toast-bottom {
+    bottom: 5rem;
+  }
+}
+
+/* Subtle upward elevation separating the fixed bottom tab bar from page
+   content scrolling beneath it-same "shadow in light mode only" call as
+   the `.card` rule above (shadows read as muddy on dark surfaces; dark
+   mode leans on `.dock`'s own border-top instead). */
+.dock {
+  box-shadow: 0 -2px 10px 0 rgb(0 0 0 / 0.05);
+}
+
+[data-theme="dark"] .dock {
+  box-shadow: none;
+}
+
+/* This file is for your main application CSS */

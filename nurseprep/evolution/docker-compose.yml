@@ -1,0 +1,60 @@
+services:
+  evolution-api:
+    image: evoapicloud/evolution-api:v2.3.7
+    container_name: nurseprep_evolution_api
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8080:8080"
+    env_file:
+      - .env
+    volumes:
+      - evolution_instances:/evolution/instances
+    # `host.docker.internal` is a Docker-Desktop-only convenience (Mac/Windows).
+    # On native Linux Docker Engine it doesn't resolve unless declared here —
+    # without this, the container can create a webhook pointed at that host
+    # but can never actually deliver to it, so real inbound WhatsApp messages
+    # silently never reach the app (confirmed: `wget http://host.docker.internal`
+    # failed with "bad address" before this was added).
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      evolution-postgres:
+        condition: service_healthy
+      evolution-redis:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  evolution-postgres:
+    image: postgres:15-alpine
+    container_name: nurseprep_evolution_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: evolution
+      POSTGRES_USER: evolution
+      POSTGRES_PASSWORD: evolution
+    volumes:
+      - evolution_postgres_data:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:5434:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U evolution"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  evolution-redis:
+    image: redis:7-alpine
+    container_name: nurseprep_evolution_redis
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - evolution_redis_data:/data
+
+volumes:
+  evolution_instances:
+  evolution_postgres_data:
+  evolution_redis_data:

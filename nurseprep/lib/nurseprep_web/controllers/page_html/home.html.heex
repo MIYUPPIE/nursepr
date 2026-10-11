@@ -1,0 +1,1038 @@
+<header
+  data-elevate-on-scroll
+  class="navbar px-4 sm:px-6 lg:px-8 sticky top-0 z-30 bg-base-100/90 backdrop-blur"
+>
+  <div class="flex-1">
+    <a href="/" class="flex w-fit items-center gap-2.5">
+      <img src={~p"/images/logo.svg"} width="32" height="32" />
+      <span class="font-bold text-lg">NursePrep</span>
+    </a>
+  </div>
+  <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-base-content/70">
+    <a href="#practice" class="hover:text-base-content transition-colors">Practice</a>
+    <a href="#mock-exams" class="hover:text-base-content transition-colors">Mock Exams</a>
+    <a href="#pricing" class="hover:text-base-content transition-colors">Pricing</a>
+    <a href="#community" class="hover:text-base-content transition-colors">Leaderboard</a>
+    <a href="#faq" class="hover:text-base-content transition-colors">FAQ</a>
+  </nav>
+  <div class="flex-none flex items-center gap-2">
+    <Layouts.theme_toggle />
+    <.link navigate={~p"/users/log-in"} class="btn btn-ghost btn-sm hidden sm:inline-flex">
+      Log in
+    </.link>
+    <.link navigate={~p"/users/log-in"} class="btn btn-primary btn-sm">Start Practicing</.link>
+    <div class="dropdown dropdown-end lg:hidden">
+      <div tabindex="0" role="button" class="btn btn-ghost btn-square" aria-label="Open menu">
+        <.icon name="hero-bars-3" class="size-6" />
+      </div>
+      <ul
+        tabindex="0"
+        class="menu dropdown-content z-40 mt-3 w-56 rounded-box bg-base-100 border border-base-300 p-2 shadow-lg text-sm font-medium"
+      >
+        <li><a href="#practice">Practice</a></li>
+        <li><a href="#mock-exams">Mock Exams</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#community">Leaderboard</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li class="mt-1 pt-1 border-t border-base-300">
+          <.link navigate={~p"/users/log-in"}>Log in</.link>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<main class="overflow-hidden">
+  <div class="relative px-4 pt-16 pb-24 sm:px-6 sm:pt-20 sm:pb-32 lg:px-8">
+    <div class="absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+      <div
+        class="animate-blob absolute left-1/2 top-[-10rem] size-[36rem] -translate-x-1/2 rounded-full bg-primary/15 blur-3xl"
+        style="--blob-x: -3rem; --blob-y: 2rem; --blob-duration: 18s;"
+      >
+      </div>
+      <div
+        class="animate-blob absolute right-[-8rem] top-32 size-80 rounded-full bg-accent/20 blur-3xl"
+        style="--blob-x: 2.5rem; --blob-y: -1.5rem; --blob-duration: 14s;"
+      >
+      </div>
+    </div>
+
+    <div class="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-10 items-center">
+      <div class="text-center lg:text-left">
+        <span
+          data-reveal="hero"
+          class="badge badge-lg bg-primary/10 text-primary uppercase tracking-wide text-xs font-semibold"
+        >
+          Nursing Exam Preparation Platform
+        </span>
+        <h1
+          data-reveal="hero"
+          class="mt-6 text-4xl sm:text-6xl font-extrabold tracking-tight text-balance"
+        >
+          Prepare smarter. Practice better.
+          <span class="italic text-primary">Pass with confidence.</span>
+        </h1>
+        <p
+          data-reveal="hero"
+          class="mt-6 text-lg text-base-content/70 text-balance max-w-xl mx-auto lg:mx-0"
+        >
+          Master nursing topics, practice realistic CBT-style questions, take mock exams in the
+          real NMCN format, and track your progress with NursePrep.
+        </p>
+        <div
+          data-reveal="hero"
+          class="mt-8 flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4"
+        >
+          <.link
+            navigate={~p"/users/log-in"}
+            class="btn btn-primary btn-lg shadow-lg shadow-primary/25 group w-full sm:w-auto"
+          >
+            Start Practicing
+            <span
+              aria-hidden="true"
+              class="inline-block transition-transform group-hover:translate-x-1"
+            >→</span>
+          </.link>
+          <.link
+            navigate={~p"/users/log-in"}
+            class="btn btn-lg btn-outline w-full sm:w-auto"
+          >
+            Take a Mock Exam
+          </.link>
+        </div>
+        <p data-reveal="hero" class="mt-6 text-sm text-base-content/60">
+          Practice anytime · Learn at your pace · Track your progress
+        </p>
+      </div>
+
+      <div
+        data-reveal="hero"
+        class="relative mx-auto w-full max-w-md lg:max-w-none sm:p-14 lg:p-16"
+      >
+        <div class="pointer-events-none" aria-hidden="true">
+          <div
+            class="animate-float absolute left-0 top-0 z-20 hidden sm:block rounded-xl bg-base-100 border border-base-300 shadow-lg px-4 py-3"
+            style="--float-duration: 6s; --float-delay: 0s;"
+          >
+            <p class="text-2xl font-extrabold text-success">87%</p>
+            <p class="text-xs text-base-content/60">Accuracy</p>
+          </div>
+          <div
+            class="animate-float absolute right-0 top-0 z-20 hidden sm:block rounded-xl bg-base-100 border border-base-300 shadow-lg px-4 py-3"
+            style="--float-duration: 7s; --float-delay: 400ms;"
+          >
+            <p class="text-2xl font-extrabold text-primary">12</p>
+            <p class="text-xs text-base-content/60">Day streak</p>
+          </div>
+          <div
+            class="animate-float absolute left-0 bottom-0 z-20 hidden sm:block rounded-xl bg-base-100 border border-base-300 shadow-lg px-4 py-3"
+            style="--float-duration: 8s; --float-delay: 800ms;"
+          >
+            <p class="text-2xl font-extrabold">1,284</p>
+            <p class="text-xs text-base-content/60">Questions completed</p>
+          </div>
+          <div
+            class="animate-float absolute right-0 bottom-0 z-20 hidden sm:block rounded-xl bg-base-100 border border-base-300 shadow-lg px-4 py-3"
+            style="--float-duration: 6.5s; --float-delay: 1200ms;"
+          >
+            <p class="text-2xl font-extrabold text-primary">82%</p>
+            <p class="text-xs text-base-content/60">Exam readiness</p>
+          </div>
+        </div>
+
+        <div
+          class="relative rounded-2xl border border-base-300 bg-base-100 shadow-2xl shadow-primary/10 overflow-hidden"
+          aria-hidden="true"
+        >
+          <div class="flex items-center justify-between px-5 py-3 border-b border-base-300 bg-base-200/50">
+            <span class="text-xs font-semibold text-base-content/60">Question 24 of 100</span>
+            <span class="flex items-center gap-1.5 text-xs font-mono font-semibold text-base-content/70">
+              <.icon name="hero-clock" class="size-3.5" /> 42:18
+            </span>
+          </div>
+          <div class="h-1.5 bg-base-300">
+            <div class="h-full w-[24%] bg-primary"></div>
+          </div>
+          <div class="p-5">
+            <p class="text-sm font-medium leading-relaxed">
+              Which intervention is most appropriate for a patient experiencing acute shortness
+              of breath at rest?
+            </p>
+            <div class="mt-4 space-y-2">
+              <div class="flex items-start gap-2.5 rounded-lg border-2 border-primary bg-primary/5 p-3">
+                <span class="flex size-5 shrink-0 items-center justify-center rounded-full bg-primary text-primary-content text-xs font-bold">
+                  A
+                </span>
+                <span class="text-sm">Place the patient in a high-Fowler's position</span>
+              </div>
+              <div class="flex items-start gap-2.5 rounded-lg border border-base-300 p-3">
+                <span class="flex size-5 shrink-0 items-center justify-center rounded-full bg-base-300 text-base-content/60 text-xs font-bold">
+                  B
+                </span>
+                <span class="text-sm text-base-content/70">Encourage the patient to lie flat</span>
+              </div>
+              <div class="flex items-start gap-2.5 rounded-lg border border-base-300 p-3">
+                <span class="flex size-5 shrink-0 items-center justify-center rounded-full bg-base-300 text-base-content/60 text-xs font-bold">
+                  C
+                </span>
+                <span class="text-sm text-base-content/70">
+                  Withhold oxygen until vitals are rechecked
+                </span>
+              </div>
+              <div class="flex items-start gap-2.5 rounded-lg border border-base-300 p-3">
+                <span class="flex size-5 shrink-0 items-center justify-center rounded-full bg-base-300 text-base-content/60 text-xs font-bold">
+                  D
+                </span>
+                <span class="text-sm text-base-content/70">
+                  Delay intervention until the physician arrives
+                </span>
+              </div>
+            </div>
+            <div class="mt-5 flex items-center justify-between text-xs">
+              <span class="flex items-center gap-1 text-base-content/40">
+                <.icon name="hero-arrow-left" class="size-3.5" /> Previous
+              </span>
+              <span class="flex items-center gap-1 font-medium text-warning">
+                <.icon name="hero-flag" class="size-3.5" /> Marked for review
+              </span>
+              <span class="flex items-center gap-1 font-semibold text-primary">
+                Next <.icon name="hero-arrow-right" class="size-3.5" />
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-y border-base-300 bg-base-200/50 py-10 px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl grid grid-cols-3 gap-6 text-center">
+      <div data-reveal="stats">
+        <p
+          data-count-to={@question_count}
+          data-count-suffix="+"
+          class="text-2xl sm:text-4xl font-extrabold text-primary"
+        >
+          {@question_count}+
+        </p>
+        <p class="mt-1 text-xs sm:text-sm text-base-content/60">Practice questions</p>
+      </div>
+      <div data-reveal="stats">
+        <p
+          data-count-to={@student_count}
+          data-count-suffix="+"
+          class="text-2xl sm:text-4xl font-extrabold text-primary"
+        >
+          {@student_count}+
+        </p>
+        <p class="mt-1 text-xs sm:text-sm text-base-content/60">Students practicing</p>
+      </div>
+      <div data-reveal="stats">
+        <p class="text-2xl sm:text-4xl font-extrabold text-primary">24/7</p>
+        <p class="mt-1 text-xs sm:text-sm text-base-content/60">WhatsApp &amp; Telegram access</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="px-4 py-24 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div data-reveal="value">
+        <span class="text-sm font-semibold text-primary uppercase tracking-wide">
+          The problem
+        </span>
+        <h2 class="mt-3 text-3xl sm:text-5xl font-extrabold tracking-tight text-balance">
+          Stop studying without knowing what to improve.
+        </h2>
+        <p class="mt-5 text-base-content/70">
+          Most nursing students prepare the same way: re-reading notes, cramming before the
+          exam, and hoping it's enough. It rarely is.
+        </p>
+        <ul class="mt-6 space-y-3">
+          <li class="flex gap-3">
+            <.icon name="hero-x-circle" class="size-5 text-error shrink-0 mt-0.5" />
+            <span class="text-sm text-base-content/70">
+              Too many topics to cover with no clear starting point
+            </span>
+          </li>
+          <li class="flex gap-3">
+            <.icon name="hero-x-circle" class="size-5 text-error shrink-0 mt-0.5" />
+            <span class="text-sm text-base-content/70">
+              Limited access to realistic CBT-style practice
+            </span>
+          </li>
+          <li class="flex gap-3">
+            <.icon name="hero-x-circle" class="size-5 text-error shrink-0 mt-0.5" />
+            <span class="text-sm text-base-content/70">
+              Exam pressure with no way to simulate the real thing
+            </span>
+          </li>
+          <li class="flex gap-3">
+            <.icon name="hero-x-circle" class="size-5 text-error shrink-0 mt-0.5" />
+            <span class="text-sm text-base-content/70">
+              No clear signal on what's actually improving
+            </span>
+          </li>
+        </ul>
+        <p class="mt-6 font-medium">
+          NursePrep replaces guesswork with a full question bank, timed mock exams, and a
+          readiness score that tells you exactly where you stand.
+        </p>
+      </div>
+
+      <div
+        data-reveal="value"
+        class="rounded-2xl border border-base-300 bg-base-100 shadow-xl p-6"
+        aria-hidden="true"
+      >
+        <p class="text-xs uppercase tracking-wide text-base-content/60 font-semibold">
+          Your progress
+        </p>
+        <div class="grid grid-cols-3 gap-3 mt-4">
+          <div class="rounded-lg bg-base-200 p-4 text-center">
+            <p class="text-2xl font-extrabold text-primary">82%</p>
+            <p class="text-xs text-base-content/60 mt-1">Readiness</p>
+          </div>
+          <div class="rounded-lg bg-base-200 p-4 text-center">
+            <p class="text-2xl font-extrabold">6</p>
+            <p class="text-xs text-base-content/60 mt-1">Day streak</p>
+          </div>
+          <div class="rounded-lg bg-base-200 p-4 text-center">
+            <p class="text-2xl font-extrabold">74%</p>
+            <p class="text-xs text-base-content/60 mt-1">Accuracy</p>
+          </div>
+        </div>
+        <div class="mt-5">
+          <div class="flex items-center gap-3">
+            <span class="w-36 shrink-0 text-xs text-base-content/70">General examination</span>
+            <div class="flex-1 h-2.5 rounded-full bg-base-300 overflow-hidden">
+              <div class="h-full w-[82%] bg-[#2898d7]"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="practice" class="scroll-mt-20 px-4 py-24 sm:px-6 lg:px-8 bg-base-200">
+    <div class="mx-auto max-w-6xl">
+      <div data-reveal="cbt-heading" class="max-w-2xl mx-auto text-center">
+        <span class="text-sm font-semibold text-primary uppercase tracking-wide">
+          The CBT experience
+        </span>
+        <h2
+          id="mock-exams"
+          class="scroll-mt-20 mt-3 text-3xl sm:text-5xl font-extrabold tracking-tight text-balance"
+        >
+          Practice like you're already in the exam room.
+        </h2>
+        <p class="mt-4 text-base-content/70">
+          Experience a realistic CBT environment designed to help you build confidence before
+          the actual examination-untimed practice with instant feedback, or a full timed mock
+          exam in the real NMCN format.
+        </p>
+      </div>
+
+      <div
+        data-reveal="cbt-heading"
+        class="mt-14 mx-auto max-w-3xl rounded-2xl border border-base-300 bg-base-100 shadow-2xl shadow-primary/10 overflow-hidden"
+        aria-hidden="true"
+      >
+        <div class="flex items-center justify-between px-5 sm:px-6 py-3 border-b border-base-300 bg-base-200/50">
+          <span class="text-xs sm:text-sm font-semibold text-base-content/60">
+            Question 57 of 100
+          </span>
+          <div class="flex items-center gap-3">
+            <span class="hidden sm:flex items-center gap-1.5 text-xs font-semibold text-warning">
+              <.icon name="hero-flag" class="size-3.5" /> Marked for review
+            </span>
+            <span class="flex items-center gap-1.5 text-xs sm:text-sm font-mono font-semibold text-base-content/70">
+              <.icon name="hero-clock" class="size-3.5" /> 38:52
+            </span>
+          </div>
+        </div>
+        <div class="h-1.5 bg-base-300">
+          <div class="h-full w-[57%] bg-primary"></div>
+        </div>
+        <div class="p-5 sm:p-8">
+          <p class="text-base font-medium leading-relaxed">
+            A client returns from theatre following abdominal surgery. Which finding requires
+            the nurse's immediate action?
+          </p>
+          <div class="mt-5 space-y-2.5">
+            <div class="flex items-start gap-3 rounded-lg border border-base-300 p-3.5">
+              <span class="flex size-6 shrink-0 items-center justify-center rounded-full bg-base-300 text-base-content/60 text-xs font-bold">
+                A
+              </span>
+              <span class="text-sm text-base-content/70">
+                Urine output of 45 mL in the last hour
+              </span>
+            </div>
+            <div class="flex items-start gap-3 rounded-lg border-2 border-success bg-success/10 p-3.5">
+              <span class="flex size-6 shrink-0 items-center justify-center rounded-full bg-success text-success-content text-xs font-bold">
+                <.icon name="hero-check" class="size-3.5" />
+              </span>
+              <span class="text-sm font-medium">Dressing saturated with bright red blood</span>
+            </div>
+            <div class="flex items-start gap-3 rounded-lg border border-base-300 p-3.5">
+              <span class="flex size-6 shrink-0 items-center justify-center rounded-full bg-base-300 text-base-content/60 text-xs font-bold">
+                C
+              </span>
+              <span class="text-sm text-base-content/70">
+                Mild incisional pain rated 3 out of 10
+              </span>
+            </div>
+            <div class="flex items-start gap-3 rounded-lg border border-base-300 p-3.5">
+              <span class="flex size-6 shrink-0 items-center justify-center rounded-full bg-base-300 text-base-content/60 text-xs font-bold">
+                D
+              </span>
+              <span class="text-sm text-base-content/70">Temperature of 37.4°C</span>
+            </div>
+          </div>
+
+          <div class="mt-5 rounded-lg bg-primary/5 border border-primary/20 p-4">
+            <p class="text-xs font-semibold text-primary uppercase tracking-wide flex items-center gap-1.5">
+              <.icon name="hero-light-bulb" class="size-4" /> Explanation
+            </p>
+            <p class="mt-1.5 text-sm text-base-content/70">
+              A dressing saturated with bright red blood signals active postoperative
+              bleeding-a time-critical finding that must be reported and acted on immediately,
+              ahead of routine vital sign or pain assessments.
+            </p>
+          </div>
+
+          <div class="mt-6 flex items-center justify-between text-sm">
+            <span class="flex items-center gap-1 text-base-content/40">
+              <.icon name="hero-arrow-left" class="size-4" /> Previous
+            </span>
+            <span class="btn btn-primary btn-sm pointer-events-none">Submit</span>
+            <span class="flex items-center gap-1 font-semibold text-primary">
+              Next <.icon name="hero-arrow-right" class="size-4" />
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div data-reveal="cbt-heading" class="mt-10 text-center">
+        <.link
+          navigate={~p"/users/log-in"}
+          class="btn btn-primary btn-lg shadow-lg shadow-primary/25"
+        >
+          Try Practice Mode
+        </.link>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="scroll-mt-16 px-4 py-24 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div data-reveal="features-heading" class="max-w-2xl mx-auto text-center">
+        <span class="text-sm font-semibold text-primary uppercase tracking-wide">Features</span>
+        <h2 class="mt-3 text-3xl sm:text-5xl font-extrabold tracking-tight text-balance">
+          Everything you need to prepare with confidence.
+        </h2>
+      </div>
+
+      <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div data-reveal="features" class="card bg-base-200 hover:shadow-lg transition-shadow">
+          <div class="card-body">
+            <div class="size-10 rounded-xl bg-primary/10 flex items-center justify-center">
+              <.icon name="hero-book-open" class="size-5 text-primary" />
+            </div>
+            <h3 class="card-title mt-3 text-base">Nursing question bank</h3>
+            <p class="text-sm text-base-content/70">
+              Practice from the full question bank, built around real NMCN-style scenarios.
+            </p>
+          </div>
+        </div>
+
+        <div data-reveal="features" class="card bg-base-200 hover:shadow-lg transition-shadow">
+          <div class="card-body">
+            <div class="size-10 rounded-xl bg-primary/10 flex items-center justify-center">
+              <.icon name="hero-clock" class="size-5 text-primary" />
+            </div>
+            <h3 class="card-title mt-3 text-base">CBT mock exams</h3>
+            <p class="text-sm text-base-content/70">
+              Full-length, timed exams in the real NMCN format and time limit.
+            </p>
+          </div>
+        </div>
+
+        <div data-reveal="features" class="card bg-base-200 hover:shadow-lg transition-shadow">
+          <div class="card-body">
+            <div class="size-10 rounded-xl bg-primary/10 flex items-center justify-center">
+              <.icon name="hero-light-bulb" class="size-5 text-primary" />
+            </div>
+            <h3 class="card-title mt-3 text-base">Detailed explanations</h3>
+            <p class="text-sm text-base-content/70">
+              Understand why an answer is correct, not just whether you got it right.
+            </p>
+          </div>
+        </div>
+
+        <div data-reveal="features" class="card bg-base-200 hover:shadow-lg transition-shadow">
+          <div class="card-body">
+            <div class="size-10 rounded-xl bg-primary/10 flex items-center justify-center">
+              <.icon name="hero-chart-bar" class="size-5 text-primary" />
+            </div>
+            <h3 class="card-title mt-3 text-base">Performance analytics</h3>
+            <p class="text-sm text-base-content/70">
+              Track accuracy, streaks and your readiness score after every session.
+            </p>
+          </div>
+        </div>
+
+        <div data-reveal="features" class="card bg-base-200 hover:shadow-lg transition-shadow">
+          <div class="card-body">
+            <div class="size-10 rounded-xl bg-primary/10 flex items-center justify-center">
+              <.icon name="hero-chat-bubble-left-ellipsis" class="size-5 text-primary" />
+            </div>
+            <h3 class="card-title mt-3 text-base">Ask the AI tutor</h3>
+            <p class="text-sm text-base-content/70">
+              Stuck on a rationale? Ask follow-up questions and get an explanation that clicks.
+            </p>
+          </div>
+        </div>
+
+        <div data-reveal="features" class="card bg-base-200 hover:shadow-lg transition-shadow">
+          <div class="card-body">
+            <div class="size-10 rounded-xl bg-primary/10 flex items-center justify-center">
+              <.icon name="hero-calendar-days" class="size-5 text-primary" />
+            </div>
+            <h3 class="card-title mt-3 text-base">Daily challenge</h3>
+            <p class="text-sm text-base-content/70">
+              A fresh question delivered to your WhatsApp or Telegram every day to build a study
+              habit.
+            </p>
+          </div>
+        </div>
+
+        <div data-reveal="features" class="card bg-base-200 hover:shadow-lg transition-shadow">
+          <div class="card-body">
+            <div class="size-10 rounded-xl bg-primary/10 flex items-center justify-center">
+              <.icon name="hero-trophy" class="size-5 text-primary" />
+            </div>
+            <h3 class="card-title mt-3 text-base">Leaderboard</h3>
+            <p class="text-sm text-base-content/70">
+              See how your readiness stacks up against other students preparing for the exam.
+            </p>
+          </div>
+        </div>
+
+        <div data-reveal="features" class="card bg-base-200 hover:shadow-lg transition-shadow">
+          <div class="card-body">
+            <div class="size-10 rounded-xl bg-primary/10 flex items-center justify-center">
+              <.icon name="hero-device-phone-mobile" class="size-5 text-primary" />
+            </div>
+            <h3 class="card-title mt-3 text-base">Study anywhere</h3>
+            <p class="text-sm text-base-content/70">
+              Practice on the web, or straight from WhatsApp or Telegram-no app to install.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="dashboard" class="scroll-mt-16 px-4 py-24 sm:px-6 lg:px-8 bg-base-200">
+    <div class="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div data-reveal="dashboard">
+        <span class="text-sm font-semibold text-primary uppercase tracking-wide">
+          Your dashboard
+        </span>
+        <h2 class="mt-3 text-3xl sm:text-5xl font-extrabold tracking-tight text-balance">
+          Know exactly where you stand.
+        </h2>
+        <p class="mt-5 text-base-content/70">
+          Don't just study harder. Every session updates your readiness score, streak and
+          accuracy-so you always know what to focus on next.
+        </p>
+        <.link navigate={~p"/users/log-in"} class="btn btn-primary mt-6">
+          View your progress
+        </.link>
+      </div>
+
+      <div
+        data-reveal="dashboard"
+        class="rounded-2xl border border-base-300 bg-base-100 shadow-xl p-6 sm:p-8"
+        aria-hidden="true"
+      >
+        <div class="flex items-center gap-6">
+          <div class="progress-ring size-28 shrink-0" style="--ring-pct: 82;">
+            <span class="text-2xl font-extrabold">82%</span>
+          </div>
+          <div>
+            <p class="font-semibold">Exam readiness</p>
+            <p class="text-sm text-base-content/60 mt-0.5">
+              Based on your recent accuracy, coverage and volume of practice.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-6 grid grid-cols-3 gap-3">
+          <div class="rounded-lg bg-base-200 p-3 text-center">
+            <p class="text-xl font-extrabold text-success">87%</p>
+            <p class="text-xs text-base-content/60 mt-0.5">Accuracy</p>
+          </div>
+          <div class="rounded-lg bg-base-200 p-3 text-center">
+            <p class="text-xl font-extrabold">1,284</p>
+            <p class="text-xs text-base-content/60 mt-0.5">Answered</p>
+          </div>
+          <div class="rounded-lg bg-base-200 p-3 text-center">
+            <p class="text-xl font-extrabold text-primary">12</p>
+            <p class="text-xs text-base-content/60 mt-0.5">Day streak</p>
+          </div>
+        </div>
+
+        <div class="mt-6">
+          <p class="text-xs uppercase tracking-wide text-base-content/60 font-semibold mb-2">
+            Recent mock exam
+          </p>
+          <div class="flex items-center justify-between rounded-lg border border-base-300 p-3">
+            <span class="text-sm">General examination · 100 questions</span>
+            <span class="badge badge-success badge-sm">78/100</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-it-works" class="scroll-mt-16 px-4 py-24 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-5xl">
+      <div data-reveal="how-it-works-heading" class="max-w-2xl mx-auto text-center">
+        <span class="text-sm font-semibold text-primary uppercase tracking-wide">
+          How it works
+        </span>
+        <h2 class="mt-3 text-3xl sm:text-5xl font-extrabold tracking-tight text-balance">
+          From sign-up to exam-day confidence.
+        </h2>
+      </div>
+
+      <ol class="relative mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div
+          class="hidden lg:block absolute top-5 left-[12.5%] right-[12.5%] h-px bg-base-300 -z-10"
+          aria-hidden="true"
+        >
+        </div>
+        <li data-reveal="how-it-works">
+          <span class="flex size-10 items-center justify-center rounded-full bg-primary text-primary-content font-bold">
+            01
+          </span>
+          <h3 class="mt-4 font-bold text-lg">Create your account</h3>
+          <p class="mt-2 text-sm text-base-content/70">
+            WhatsApp, Telegram, or email-no card, no install.
+          </p>
+        </li>
+        <li data-reveal="how-it-works">
+          <span class="flex size-10 items-center justify-center rounded-full bg-primary text-primary-content font-bold">
+            02
+          </span>
+          <h3 class="mt-4 font-bold text-lg">Start practicing</h3>
+          <p class="mt-2 text-sm text-base-content/70">
+            Untimed practice from the full question bank, with instant feedback.
+          </p>
+        </li>
+        <li data-reveal="how-it-works">
+          <span class="flex size-10 items-center justify-center rounded-full bg-primary text-primary-content font-bold">
+            03
+          </span>
+          <h3 class="mt-4 font-bold text-lg">Take mock exams</h3>
+          <p class="mt-2 text-sm text-base-content/70">
+            Sit full-length, timed exams in the real NMCN format.
+          </p>
+        </li>
+        <li data-reveal="how-it-works">
+          <span class="flex size-10 items-center justify-center rounded-full bg-primary text-primary-content font-bold">
+            04
+          </span>
+          <h3 class="mt-4 font-bold text-lg">Track your progress</h3>
+          <p class="mt-2 text-sm text-base-content/70">
+            Watch your readiness score climb, session over session.
+          </p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="community" class="scroll-mt-16 px-4 py-24 sm:px-6 lg:px-8 bg-base-200">
+    <div class="mx-auto max-w-5xl">
+      <div data-reveal="gamification-heading" class="max-w-2xl mx-auto text-center">
+        <span class="text-sm font-semibold text-primary uppercase tracking-wide">
+          Stay consistent
+        </span>
+        <h2 class="mt-3 text-3xl sm:text-5xl font-extrabold tracking-tight text-balance">
+          Build your streak. Build your confidence.
+        </h2>
+        <p class="mt-4 text-base-content/70">
+          A few minutes a day beats an all-night cram. NursePrep keeps score so consistency
+          actually feels rewarding.
+        </p>
+      </div>
+
+      <div class="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div
+          data-reveal="gamification"
+          class="rounded-2xl border border-base-300 bg-base-100 shadow-lg p-6"
+          aria-hidden="true"
+        >
+          <div class="flex items-center justify-between">
+            <p class="font-semibold flex items-center gap-2">
+              <.icon name="hero-fire" class="size-5 text-warning" /> 12 day streak
+            </p>
+            <span class="badge badge-primary badge-sm">+40 XP this week</span>
+          </div>
+          <div class="mt-5 grid grid-cols-7 gap-2 text-center">
+            <div :for={
+              {day, done} <- [
+                {"Mon", true},
+                {"Tue", true},
+                {"Wed", true},
+                {"Thu", true},
+                {"Fri", true},
+                {"Sat", true},
+                {"Sun", false}
+              ]
+            }>
+              <p class="text-xs text-base-content/50 mb-1.5">{day}</p>
+              <div class={[
+                "size-8 mx-auto rounded-full flex items-center justify-center",
+                done && "bg-success text-success-content",
+                !done && "bg-base-300 text-base-content/40"
+              ]}>
+                <.icon :if={done} name="hero-check" class="size-4" />
+                <span :if={!done} class="text-xs">·</span>
+              </div>
+            </div>
+          </div>
+          <.link navigate={~p"/users/log-in"} class="btn btn-primary btn-block mt-6">
+            Start today's challenge
+          </.link>
+        </div>
+
+        <div
+          data-reveal="gamification"
+          class="rounded-2xl border border-base-300 bg-base-100 shadow-lg p-6"
+        >
+          <p class="font-semibold flex items-center gap-2">
+            <.icon name="hero-trophy" class="size-5 text-primary" /> This week's leaderboard
+          </p>
+
+          <div :if={@leaderboard == []} class="mt-5 py-6 text-center text-base-content/60">
+            <.icon name="hero-trophy" class="size-8 mx-auto mb-2 text-base-content/30" />
+            <p class="text-sm">No ranked activity yet this week.</p>
+            <p class="text-xs mt-1">Be the first to climb it.</p>
+          </div>
+
+          <ol :if={@leaderboard != []} class="mt-5 space-y-2">
+            <li
+              :for={{row, i} <- Enum.with_index(@leaderboard, 1)}
+              class="flex items-center justify-between rounded-lg bg-base-200 p-3"
+            >
+              <span class="flex items-center gap-3">
+                <span class="text-lg">{medal(i)}</span>
+                <span class="text-sm font-medium">{row.name || "Student"}</span>
+              </span>
+              <span class="text-sm text-base-content/60">{row.correct} correct</span>
+            </li>
+          </ol>
+          <p class="mt-4 text-xs text-base-content/50">
+            Opt in from your profile to appear here.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="scroll-mt-16 px-4 py-24 sm:px-6 lg:px-8 bg-base-200">
+    <div class="mx-auto max-w-5xl">
+      <div data-reveal="pricing-heading" class="max-w-2xl mx-auto text-center">
+        <span class="text-sm font-semibold text-primary uppercase tracking-wide">Pricing</span>
+        <h2 class="mt-3 text-3xl sm:text-5xl font-extrabold tracking-tight text-balance">
+          Start free. Upgrade when you're serious.
+        </h2>
+      </div>
+
+      <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+        <div data-reveal="pricing" class="card bg-base-100">
+          <div class="card-body">
+            <h3 class="font-bold text-lg">Free</h3>
+            <p class="text-3xl font-extrabold mt-2">₦0</p>
+            <ul class="text-sm mt-4 space-y-2 text-base-content/70">
+              <li class="flex gap-2">
+                <.icon name="hero-check" class="size-5 text-success shrink-0" />
+                {@daily_limit} practice questions a day
+              </li>
+              <li class="flex gap-2">
+                <.icon name="hero-check" class="size-5 text-success shrink-0" />
+                Instant answer explanations
+              </li>
+              <li class="flex gap-2">
+                <.icon name="hero-check" class="size-5 text-success shrink-0" />
+                Readiness score &amp; leaderboard
+              </li>
+            </ul>
+            <.link navigate={~p"/users/log-in"} class="btn bg-base-200 hover:bg-base-300 mt-6">
+              Start free
+            </.link>
+          </div>
+        </div>
+
+        <div data-reveal="pricing" class="card bg-base-100 shadow-xl shadow-primary/20 relative">
+          <span class="badge badge-primary absolute -top-3 right-6">Most popular</span>
+          <div class="card-body">
+            <h3 class="font-bold text-lg">Premium</h3>
+            <p class="text-3xl font-extrabold mt-2">
+              ₦{NursePrep.Formatting.naira(@amount_kobo)}<span class="text-sm font-normal text-base-content/60">/quarter</span>
+            </p>
+            <ul class="text-sm mt-4 space-y-2 text-base-content/70">
+              <li class="flex gap-2">
+                <.icon name="hero-check" class="size-5 text-success shrink-0" />
+                Unlimited practice questions
+              </li>
+              <li class="flex gap-2">
+                <.icon name="hero-check" class="size-5 text-success shrink-0" />
+                Timed NMCN-format mock exams
+              </li>
+              <li class="flex gap-2">
+                <.icon name="hero-check" class="size-5 text-success shrink-0" /> AI tutor
+              </li>
+              <li class="flex gap-2">
+                <.icon name="hero-check" class="size-5 text-success shrink-0" />
+                Daily WhatsApp or Telegram quiz
+              </li>
+            </ul>
+            <.link navigate={~p"/users/log-in"} class="btn btn-primary mt-6">
+              Upgrade to Premium
+            </.link>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="relative px-4 py-24 sm:px-6 lg:px-8 overflow-hidden">
+    <div class="absolute inset-0 -z-10" aria-hidden="true">
+      <div
+        class="animate-blob absolute left-1/2 top-0 size-[40rem] -translate-x-1/2 -translate-y-1/3 rounded-full bg-primary/15 blur-3xl"
+        style="--blob-x: 2rem; --blob-y: 1rem; --blob-duration: 20s;"
+      >
+      </div>
+    </div>
+    <div data-reveal="final-cta" class="mx-auto max-w-2xl text-center">
+      <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-balance">
+        Your nursing exam deserves <span class="italic text-primary">better preparation</span>.
+      </h2>
+      <p class="mt-4 text-base-content/70 text-balance">
+        Practice consistently. Understand your mistakes. Track your progress. Walk into your
+        exam with confidence.
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <.link
+          navigate={~p"/users/log-in"}
+          class="btn btn-primary btn-lg shadow-lg shadow-primary/25 group"
+        >
+          Start Practicing
+          <span
+            aria-hidden="true"
+            class="inline-block transition-transform group-hover:translate-x-1"
+          >→</span>
+        </.link>
+        <.link navigate={~p"/users/log-in"} class="btn btn-lg btn-outline">
+          Take a Mock Exam
+        </.link>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="scroll-mt-16 px-4 py-24 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl">
+      <div data-reveal="faq-heading" class="max-w-2xl">
+        <span class="text-sm font-semibold text-primary uppercase tracking-wide">FAQ</span>
+        <h2 class="mt-3 text-3xl sm:text-5xl font-extrabold tracking-tight text-balance">
+          Questions, answered.
+        </h2>
+      </div>
+
+      <div class="mt-10 space-y-3">
+        <div data-reveal="faq" class="collapse collapse-arrow bg-base-200">
+          <input type="checkbox" />
+          <div class="collapse-title font-semibold">What is NursePrep?</div>
+          <div class="collapse-content text-sm text-base-content/70">
+            NursePrep is a CBT-style exam preparation platform for Nigerian nursing and
+            midwifery students preparing for the NMCN Professional Examination-practice
+            questions, timed mock exams, and progress tracking in one place.
+          </div>
+        </div>
+        <div data-reveal="faq" class="collapse collapse-arrow bg-base-200">
+          <input type="checkbox" />
+          <div class="collapse-title font-semibold">Who is NursePrep designed for?</div>
+          <div class="collapse-content text-sm text-base-content/70">
+            Nursing and midwifery students preparing to sit the NMCN Professional Examination.
+          </div>
+        </div>
+        <div data-reveal="faq" class="collapse collapse-arrow bg-base-200">
+          <input type="checkbox" />
+          <div class="collapse-title font-semibold">Is NursePrep really free to start?</div>
+          <div class="collapse-content text-sm text-base-content/70">
+            Yes. {@daily_limit} practice questions a day, forever, with instant explanations.
+            Upgrade only if you want unlimited practice, timed mock exams, and the AI tutor.
+          </div>
+        </div>
+        <div data-reveal="faq" class="collapse collapse-arrow bg-base-200">
+          <input type="checkbox" />
+          <div class="collapse-title font-semibold">Can I practice by topic?</div>
+          <div class="collapse-content text-sm text-base-content/70">
+            Not yet-practice questions currently come from the full question bank rather than
+            individual topics. Topic-level practice is on the roadmap.
+          </div>
+        </div>
+        <div data-reveal="faq" class="collapse collapse-arrow bg-base-200">
+          <input type="checkbox" />
+          <div class="collapse-title font-semibold">
+            Does it match the real NMCN exam format?
+          </div>
+          <div class="collapse-content text-sm text-base-content/70">
+            Yes. Timed mock exams mirror the real NMCN structure and time limit, so exam day
+            has no surprises.
+          </div>
+        </div>
+        <div data-reveal="faq" class="collapse collapse-arrow bg-base-200">
+          <input type="checkbox" />
+          <div class="collapse-title font-semibold">Can I track my performance?</div>
+          <div class="collapse-content text-sm text-base-content/70">
+            Yes. Every session updates your readiness score, streak, and accuracy so you
+            always know what to focus on next.
+          </div>
+        </div>
+        <div data-reveal="faq" class="collapse collapse-arrow bg-base-200">
+          <input type="checkbox" />
+          <div class="collapse-title font-semibold">How does the WhatsApp/Telegram quiz work?</div>
+          <div class="collapse-content text-sm text-base-content/70">
+            Once you're signed in, a quiz question lands in your WhatsApp or Telegram chat every
+            day. Reply with your answer, no app to install and no data-heavy pages to load.
+          </div>
+        </div>
+        <div data-reveal="faq" class="collapse collapse-arrow bg-base-200">
+          <input type="checkbox" />
+          <div class="collapse-title font-semibold">Can I use NursePrep on my phone?</div>
+          <div class="collapse-content text-sm text-base-content/70">
+            Yes. NursePrep is fully responsive on mobile, and you can also practice directly
+            from WhatsApp or Telegram.
+          </div>
+        </div>
+        <div data-reveal="faq" class="collapse collapse-arrow bg-base-200">
+          <input type="checkbox" />
+          <div class="collapse-title font-semibold">Is payment secure?</div>
+          <div class="collapse-content text-sm text-base-content/70">
+            Every payment is processed by Paystack. NursePrep never sees or stores your card
+            details.
+          </div>
+        </div>
+        <div data-reveal="faq" class="collapse collapse-arrow bg-base-200">
+          <input type="checkbox" />
+          <div class="collapse-title font-semibold">Can I cancel anytime?</div>
+          <div class="collapse-content text-sm text-base-content/70">
+            There's no auto-renewal. Premium runs for one billing period and simply ends
+            unless you choose to renew, so there's nothing to remember to cancel.
+          </div>
+        </div>
+        <div data-reveal="faq" class="collapse collapse-arrow bg-base-200">
+          <input type="checkbox" />
+          <div class="collapse-title font-semibold">How do I create an account?</div>
+          <div class="collapse-content text-sm text-base-content/70">
+            Sign in with WhatsApp, Telegram, or email-no password needed. We'll send a one-time
+            code wherever you signed in.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t border-base-300 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl grid grid-cols-1 sm:grid-cols-3 gap-10">
+      <div>
+        <div class="flex items-center gap-2">
+          <img src={~p"/images/logo.svg"} width="28" height="28" />
+          <span class="font-bold text-lg">NursePrep</span>
+        </div>
+        <p class="mt-3 text-sm text-base-content/60 max-w-xs">
+          CBT-style exam preparation for Nigerian nursing and midwifery students sitting the
+          NMCN Professional Examination.
+        </p>
+      </div>
+
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wide text-base-content/50">
+          Platform
+        </p>
+        <ul class="mt-3 space-y-2 text-sm">
+          <li>
+            <a
+              href="#practice"
+              class="text-base-content/70 hover:text-base-content transition-colors"
+            >
+              Practice
+            </a>
+          </li>
+          <li>
+            <a
+              href="#mock-exams"
+              class="text-base-content/70 hover:text-base-content transition-colors"
+            >
+              Mock exams
+            </a>
+          </li>
+          <li>
+            <a
+              href="#community"
+              class="text-base-content/70 hover:text-base-content transition-colors"
+            >
+              Leaderboard
+            </a>
+          </li>
+          <li>
+            <a
+              href="#dashboard"
+              class="text-base-content/70 hover:text-base-content transition-colors"
+            >
+              Progress
+            </a>
+          </li>
+          <li>
+            <a
+              href="#pricing"
+              class="text-base-content/70 hover:text-base-content transition-colors"
+            >
+              Pricing
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wide text-base-content/50">
+          Support
+        </p>
+        <ul class="mt-3 space-y-2 text-sm">
+          <li>
+            <a href="#faq" class="text-base-content/70 hover:text-base-content transition-colors">
+              FAQ
+            </a>
+          </li>
+          <li>
+            <.link
+              navigate={~p"/users/log-in"}
+              class="text-base-content/70 hover:text-base-content transition-colors"
+            >
+              Log in
+            </.link>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mx-auto max-w-6xl mt-12 pt-6 border-t border-base-300 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-base-content/50">
+      <p>Exam prep for Nigerian nursing licensure candidates.</p>
+      <p>© {Date.utc_today().year} NursePrep. All rights reserved.</p>
+    </div>
+  </footer>
+</main>

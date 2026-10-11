@@ -1,0 +1,4 @@
+nurseprep.com.ng {
+	encode gzip
+	reverse_proxy app:4000
+}
